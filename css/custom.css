@@ -1,0 +1,513 @@
+/*
+ * ============================================
+ *  kayhs's Blog — Custom Theme
+ *  陶土暖调 · 呼吸感排版 · 细微动感
+ * ============================================
+ */
+
+/* ========================================
+   CSS 自定义属性 — 配色、字体、间距
+   ======================================== */
+
+:root {
+  /* 覆盖 Fluid 主题变量 */
+  --body-bg-color: #faf7f4;
+  --navbar-bg-color: rgba(255, 252, 250, 0.92);
+  --navbar-text-color: #4a3f3a;
+  --text-color: #3d3630;
+  --sec-text-color: #8c7e72;
+  --board-color: #fffdfb;
+  --post-text-color: #3d3630;
+  --post-heading-color: #2a221e;
+  --post-link-color: #c47a5a;
+  --link-hover-color: #d4845a;
+  --link-hover-bg-color: rgba(196, 122, 90, 0.07);
+  --line-color: #e8e0d8;
+  --scrollbar-color: #d4c8bc;
+  --scrollbar-hover-color: #b8a898;
+  --button-bg-color: transparent;
+  --button-hover-bg-color: #f5ede5;
+
+  /* 陶土强调色系 */
+  --kayhs-terracotta: #c47a5a;
+  --kayhs-terracotta-light: #d4946a;
+  --kayhs-terracotta-subtle: rgba(196, 122, 90, 0.08);
+  --kayhs-cream: #fdf8f3;
+  --kayhs-warm-shadow: 0 2px 16px rgba(60, 30, 15, 0.06);
+  --kayhs-warm-shadow-hover: 0 4px 24px rgba(60, 30, 15, 0.10);
+  --kayhs-border: 1px solid #e8e0d8;
+}
+
+/* 暗色模式 */
+html[data-user-color-scheme="dark"] {
+  --body-bg-color: #1a1c22;
+  --navbar-bg-color: rgba(26, 28, 34, 0.94);
+  --navbar-text-color: #d0cec8;
+  --text-color: #d0cec8;
+  --sec-text-color: #8c887e;
+  --board-color: #23252d;
+  --post-text-color: #d0cec8;
+  --post-heading-color: #e8e4dc;
+  --post-link-color: #d4946a;
+  --link-hover-color: #e0a878;
+  --link-hover-bg-color: rgba(212, 148, 106, 0.10);
+  --line-color: #383a3e;
+  --scrollbar-color: #404248;
+  --scrollbar-hover-color: #585a5e;
+  --button-hover-bg-color: #2e2f35;
+  --kayhs-terracotta: #d4946a;
+  --kayhs-terracotta-light: #e0a878;
+  --kayhs-terracotta-subtle: rgba(212, 148, 106, 0.10);
+  --kayhs-cream: #26282e;
+  --kayhs-warm-shadow: 0 2px 16px rgba(0, 0, 0, 0.20);
+  --kayhs-warm-shadow-hover: 0 4px 24px rgba(0, 0, 0, 0.30);
+  --kayhs-border: 1px solid #383a3e;
+}
+
+
+/* ========================================
+   全局排版
+   ======================================== */
+
+html {
+  font-size: 17px;
+}
+
+body {
+  font-family: "Noto Sans SC", "LXGW WenKai", system-ui, -apple-system, "Segoe UI", sans-serif;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 标题用衬线体，有性格 */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Noto Serif SC", "思源宋体", "Source Han Serif SC", Georgia, "Times New Roman", serif;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+}
+
+h1 { font-size: 2rem; letter-spacing: 0.06em; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.25rem; }
+
+/* 正文呼吸感 */
+p {
+  margin-bottom: 1.2em;
+}
+
+/* ::selection 陶土色高亮 */
+::selection {
+  background: rgba(196, 122, 90, 0.22);
+  color: inherit;
+}
+
+::-moz-selection {
+  background: rgba(196, 122, 90, 0.22);
+  color: inherit;
+}
+
+
+/* ========================================
+   导航栏 — 干净温润
+   ======================================== */
+
+.navbar {
+  background: var(--navbar-bg-color) !important;
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  box-shadow: 0 1px 0 var(--line-color);
+  border-bottom: none;
+}
+
+.navbar .navbar-brand {
+  font-family: "Noto Serif SC", Georgia, serif !important;
+  font-weight: 700 !important;
+  font-size: 1.3rem !important;
+  letter-spacing: 0.08em !important;
+  color: var(--kayhs-terracotta) !important;
+}
+
+.navbar .nav-link {
+  font-size: 0.9rem !important;
+  letter-spacing: 0.03em;
+  font-weight: 400 !important;
+  color: var(--sec-text-color) !important;
+  transition: color 0.25s ease !important;
+}
+
+.navbar .nav-link:hover {
+  color: var(--kayhs-terracotta) !important;
+}
+
+.navbar .nav-link.active {
+  color: var(--kayhs-terracotta) !important;
+  font-weight: 500 !important;
+}
+
+
+/* ========================================
+   Banner — CSS 渐变替代图片，独一无二
+   ======================================== */
+
+#banner {
+  background: linear-gradient(160deg,
+    #f5e6d8 0%,
+    #edd5c0 15%,
+    #e8ccb0 30%,
+    #f0dac8 50%,
+    #f5e6d8 70%,
+    #ead8c8 85%,
+    #f0ddd0 100%
+  ) !important;
+  background-size: 400% 400% !important;
+  animation: kayhs-banner-drift 24s ease-in-out infinite !important;
+}
+
+[data-user-color-scheme="dark"] #banner {
+  background: linear-gradient(160deg,
+    #2a241e 0%,
+    #332820 20%,
+    #3d3024 40%,
+    #342a22 60%,
+    #2e261e 80%,
+    #352c22 100%
+  ) !important;
+  background-size: 400% 400% !important;
+  animation: kayhs-banner-drift 24s ease-in-out infinite !important;
+}
+
+@keyframes kayhs-banner-drift {
+  0%, 100% { background-position: 0% 50%; }
+  25%      { background-position: 100% 0%; }
+  50%      { background-position: 50% 100%; }
+  75%      { background-position: 0% 50%; }
+}
+
+/* 覆盖 black mask — 用更柔和的暖调遮罩 */
+#banner:after,
+.banner-mask {
+  background: rgba(40, 20, 10, 0.15) !important;
+}
+
+[data-user-color-scheme="dark"] #banner:after,
+[data-user-color-scheme="dark"] .banner-mask {
+  background: rgba(10, 8, 6, 0.45) !important;
+}
+
+/* 首页 banner 内标题 */
+#banner .banner-title {
+  font-family: "Noto Serif SC", Georgia, serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.10em !important;
+}
+
+/* 副标题打字效果 */
+#banner #subtitle,
+#banner .subtitle {
+  font-family: "LXGW WenKai", "Noto Serif SC", serif !important;
+  font-weight: 400 !important;
+  font-style: italic;
+  letter-spacing: 0.06em;
+  opacity: 0.88;
+}
+
+
+/* ========================================
+   文章卡片 — 微妙阴影 & 悬浮感
+   ======================================== */
+
+.index-card,
+.post-list .post-item,
+#board article {
+  background: var(--board-color);
+  border-radius: 10px !important;
+  border: var(--kayhs-border);
+  box-shadow: var(--kayhs-warm-shadow);
+  transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+  margin-bottom: 1.8rem;
+  padding: 1.8rem 2rem;
+}
+
+.index-card:hover,
+.post-list .post-item:hover {
+  box-shadow: var(--kayhs-warm-shadow-hover);
+  transform: translateY(-2px);
+  border-color: #e0d2c4;
+}
+
+/* 文章卡片内的标题 */
+.index-card .post-title a,
+.post-list .post-title a {
+  font-family: "Noto Serif SC", Georgia, serif !important;
+  font-weight: 600;
+  color: var(--post-heading-color) !important;
+  transition: color 0.25s ease;
+  background: none !important;
+}
+
+.index-card .post-title a:hover,
+.post-list .post-title a:hover {
+  color: var(--kayhs-terracotta) !important;
+}
+
+/* 摘要文字 */
+.index-card .post-excerpt,
+.index-card .post-content {
+  color: var(--sec-text-color);
+  font-size: 0.95rem;
+  line-height: 1.85;
+}
+
+
+/* ========================================
+   链接 — 陶土色底线生长动画
+   ======================================== */
+
+/* 正文内链接 */
+article a,
+.post-content a,
+#board a {
+  color: var(--post-link-color) !important;
+  text-decoration: none;
+  background-image: linear-gradient(var(--kayhs-terracotta), var(--kayhs-terracotta));
+  background-size: 0% 1px;
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.3s ease, color 0.25s ease;
+  padding-bottom: 1px;
+}
+
+article a:hover,
+.post-content a:hover,
+#board a:hover {
+  background-size: 100% 1px;
+  color: var(--link-hover-color) !important;
+}
+
+/* 但保留导航链接不受影响 */
+.navbar a,
+.nav-link,
+footer a,
+.pagination a,
+#toc a,
+.category-bar a,
+.tagcloud a {
+  background-image: none !important;
+  background-size: auto !important;
+  padding-bottom: 0 !important;
+}
+
+
+/* ========================================
+   代码块 — 圆角轻柔
+   ======================================== */
+
+figure.highlight,
+pre {
+  border-radius: 8px !important;
+  border: var(--kayhs-border);
+  box-shadow: none;
+  font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", "SF Mono", "Consolas", monospace;
+  font-size: 0.88rem;
+}
+
+/* 行内代码 */
+code:not(pre code):not(figure code) {
+  background: var(--kayhs-terracotta-subtle);
+  color: var(--kayhs-terracotta);
+  padding: 0.15em 0.4em;
+  border-radius: 3px;
+  font-size: 0.9em;
+  font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", monospace;
+}
+
+
+/* ========================================
+   Tag / Category 标签 — 温润小豆
+   ======================================== */
+
+.tag-list .tag-item a,
+.post-meta .tag a,
+.post-meta .category a {
+  display: inline-block;
+  background: var(--kayhs-terracotta-subtle);
+  color: var(--kayhs-terracotta) !important;
+  border-radius: 20px;
+  padding: 0.15em 0.8em;
+  font-size: 0.8rem;
+  font-weight: 450;
+  letter-spacing: 0.02em;
+  transition: background 0.25s ease, color 0.25s ease;
+  margin: 0 0.3em 0.3em 0;
+}
+
+.tag-list .tag-item a:hover,
+.post-meta .tag a:hover,
+.post-meta .category a:hover {
+  background: var(--kayhs-terracotta);
+  color: #fff !important;
+}
+
+
+/* ========================================
+   Copyright & Prev/Next — 精致分割
+   ======================================== */
+
+.post-copyright {
+  border-left: 3px solid var(--kayhs-terracotta) !important;
+  background: var(--kayhs-cream) !important;
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.2rem;
+  font-size: 0.88rem;
+}
+
+.prev-next .prev,
+.prev-next .next {
+  font-size: 0.9rem;
+}
+
+.prev-next a:hover {
+  color: var(--kayhs-terracotta) !important;
+}
+
+
+/* ==========================================
+   页脚 — 简洁署名
+   ======================================== */
+
+footer {
+  color: var(--sec-text-color);
+  font-size: 0.82rem;
+  letter-spacing: 0.03em;
+  padding: 2rem 0;
+  border-top: var(--kayhs-border);
+  margin-top: 3rem;
+}
+
+footer a {
+  color: var(--sec-text-color) !important;
+  transition: color 0.25s ease;
+}
+
+footer a:hover {
+  color: var(--kayhs-terracotta) !important;
+}
+
+
+/* ========================================
+   滚动条 — 温润色调
+   ======================================== */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-color);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-hover-color);
+}
+
+
+/* ========================================
+   回到顶部按钮
+   ======================================== */
+
+#scroll-top-button {
+  background: var(--board-color) !important;
+  border: var(--kayhs-border);
+  border-radius: 50%;
+  box-shadow: var(--kayhs-warm-shadow);
+  color: var(--kayhs-terracotta) !important;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+#scroll-top-button:hover {
+  box-shadow: var(--kayhs-warm-shadow-hover);
+  transform: translateY(-3px);
+}
+
+
+/* ========================================
+   关于页 — 个性化布局
+   ======================================== */
+
+.about-avatar img {
+  border-radius: 50%;
+  border: 3px solid var(--kayhs-terracotta-subtle);
+  box-shadow: var(--kayhs-warm-shadow);
+}
+
+.about-info .about-name {
+  font-family: "Noto Serif SC", Georgia, serif !important;
+  font-weight: 700 !important;
+  font-size: 1.8rem !important;
+  letter-spacing: 0.06em;
+}
+
+.about-info .about-intro {
+  color: var(--sec-text-color);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+
+/* ========================================
+   TOC / 目录
+   ======================================== */
+
+#toc {
+  border-left: 2px solid var(--line-color);
+  padding-left: 1rem;
+}
+
+#toc .toc-link {
+  font-size: 0.88rem;
+  color: var(--sec-text-color) !important;
+  transition: color 0.2s ease;
+}
+
+#toc .toc-link:hover,
+#toc .toc-link.is-active-link {
+  color: var(--kayhs-terracotta) !important;
+}
+
+
+/* ========================================
+   进度条
+   ======================================== */
+
+#nprogress .bar {
+  background: var(--kayhs-terracotta) !important;
+}
+
+#nprogress .peg {
+  box-shadow: 0 0 10px var(--kayhs-terracotta), 0 0 5px var(--kayhs-terracotta-light) !important;
+}
+
+
+/* ========================================
+   移动端微调
+   ======================================== */
+
+@media (max-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+
+  .index-card,
+  .post-list .post-item {
+    padding: 1.2rem 1rem;
+    border-radius: 8px !important;
+    margin-bottom: 1.2rem;
+  }
+
+  h1 { font-size: 1.6rem; }
+  h2 { font-size: 1.3rem; }
+}
