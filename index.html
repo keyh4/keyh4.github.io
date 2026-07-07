@@ -33,12 +33,47 @@
 </header>
   <main class="site-main">
 <section class="home-shell">
-  <aside class="index-rail"><span>INDEX</span><strong>2</strong><span>POSTS</span></aside>
+  <aside class="index-rail"><span>INDEX</span><strong>4</strong><span>POSTS</span></aside>
   <div class="post-index">
+    <header class="index-welcome">
+      <p class="index-greeting">你好，我是 kayhs。</p>
+      <p class="index-desc">这里是我的数字工坊。记录技术思考，分享构建心得。欢迎逛逛。</p>
+      <div class="index-links">
+        <a href="/about/">about →</a>
+        <a href="https://github.com/keyh4" target="_blank" rel="noopener">github ↗</a>
+      </div>
+    </header>
     
       
       <article class="post-unit">
-        <a class="post-unit-number" href="/2026/06/07/hello-world/">01</a>
+        <a class="post-unit-number" href="/2026/07/05/redesign-my-blog/">01</a>
+        <div class="post-unit-body">
+          <time class="post-unit-date" datetime="2026-07-05">2026.07.05</time>
+          <h1 class="post-unit-title"><a href="/2026/07/05/redesign-my-blog/">为什么我要重新设计这个博客</a></h1>
+          <a class="post-unit-excerpt" href="/2026/07/05/redesign-my-blog/">一个好的个人博客应该是什么样子？这个问题我思考了很久。
+大多数人选择现成的主题，调整一下颜色和字体就算完事。这没什么不对——把时间花在内容上确实更重要。但对我而言，博客本身就是一件值得精心建造的作品。
+从”修修补补”到”推倒重来”最初的计划很简单：在 Hexo + Fluid 主题的基础上，改改 CSS 就完了。我确实这么做了——写了 500 多行自定义样式</a>
+          <div class="post-tags"><a href="/tags/design/">design</a><a href="/tags/blog/">blog</a></div>
+        </div>
+      </article>
+    
+      
+      <article class="post-unit">
+        <a class="post-unit-number" href="/2026/06/20/builder-mindset/">02</a>
+        <div class="post-unit-body">
+          <time class="post-unit-date" datetime="2026-06-20">2026.06.20</time>
+          <h1 class="post-unit-title"><a href="/2026/06/20/builder-mindset/">构建者心态</a></h1>
+          <a class="post-unit-excerpt" href="/2026/06/20/builder-mindset/">有一种分类方式我觉得很有用：消费者 vs 构建者。
+消费者使用工具、消费内容、在给定的框架内操作。这完全没问题——我们每天都在消费大量的信息和产品。
+构建者拆解工具、创造内容、质疑框架本身。构建者不满足于”能用就行”，他们想理解原理、改进实现、甚至从零开始造一个更好的。
+构建者不是天生的没有人天生就是构建者。都是从消费者开始的——先用别人造好的东西，然后某天</a>
+          <div class="post-tags"><a href="/tags/thinking/">thinking</a><a href="/tags/philosophy/">philosophy</a></div>
+        </div>
+      </article>
+    
+      
+      <article class="post-unit">
+        <a class="post-unit-number" href="/2026/06/07/hello-world/">03</a>
         <div class="post-unit-body">
           <time class="post-unit-date" datetime="2026-06-07">2026.06.07</time>
           <h1 class="post-unit-title"><a href="/2026/06/07/hello-world/">Hello World</a></h1>
@@ -49,7 +84,7 @@
     
       
       <article class="post-unit">
-        <a class="post-unit-number" href="/2026/02/18/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/">02</a>
+        <a class="post-unit-number" href="/2026/02/18/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/">04</a>
         <div class="post-unit-body">
           <time class="post-unit-date" datetime="2026-02-18">2026.02.18</time>
           <h1 class="post-unit-title"><a href="/2026/02/18/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/">我的第一个博客</a></h1>
@@ -79,6 +114,7 @@
       <div class="search-results" data-search-results></div>
     </div>
   </div>
+  <div class="blueprint-glow" aria-hidden="true"></div>
   <script>
   (function () {
     var root = document.documentElement;
@@ -119,6 +155,19 @@
       });
     }).catch(function () {});
   })();
+
+  var glow = document.querySelector('.blueprint-glow');
+  if (glow && window.matchMedia('(pointer: fine)').matches && !(window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+    var mx = -200, my = -200, tx = -200, ty = -200;
+    document.addEventListener('mousemove', function (e) { tx = e.clientX; ty = e.clientY; });
+    (function loop() {
+      mx += (tx - mx) * 0.08;
+      my += (ty - my) * 0.08;
+      glow.style.setProperty('--mx', Math.round(mx) + 'px');
+      glow.style.setProperty('--my', Math.round(my) + 'px');
+      requestAnimationFrame(loop);
+    })();
+  }
   </script>
 </body>
 </html>

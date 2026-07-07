@@ -54,7 +54,7 @@
 
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 </div>
-    <nav class="post-neighbor"><a href="/2026/02/18/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/">我的第一个博客 →</a></nav>
+    <nav class="post-neighbor"><a href="/2026/06/20/builder-mindset/">← 构建者心态</a><a href="/2026/02/18/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/">我的第一个博客 →</a></nav>
   </div>
   <aside class="article-toc"><p>CONTENTS</p><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol></aside>
 </article></main>
@@ -76,6 +76,7 @@
       <div class="search-results" data-search-results></div>
     </div>
   </div>
+  <div class="blueprint-glow" aria-hidden="true"></div>
   <script>
   (function () {
     var root = document.documentElement;
@@ -116,6 +117,19 @@
       });
     }).catch(function () {});
   })();
+
+  var glow = document.querySelector('.blueprint-glow');
+  if (glow && window.matchMedia('(pointer: fine)').matches && !(window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+    var mx = -200, my = -200, tx = -200, ty = -200;
+    document.addEventListener('mousemove', function (e) { tx = e.clientX; ty = e.clientY; });
+    (function loop() {
+      mx += (tx - mx) * 0.08;
+      my += (ty - my) * 0.08;
+      glow.style.setProperty('--mx', Math.round(mx) + 'px');
+      glow.style.setProperty('--my', Math.round(my) + 'px');
+      requestAnimationFrame(loop);
+    })();
+  }
   </script>
 </body>
 </html>

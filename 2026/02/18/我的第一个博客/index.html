@@ -64,6 +64,7 @@
       <div class="search-results" data-search-results></div>
     </div>
   </div>
+  <div class="blueprint-glow" aria-hidden="true"></div>
   <script>
   (function () {
     var root = document.documentElement;
@@ -104,6 +105,19 @@
       });
     }).catch(function () {});
   })();
+
+  var glow = document.querySelector('.blueprint-glow');
+  if (glow && window.matchMedia('(pointer: fine)').matches && !(window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+    var mx = -200, my = -200, tx = -200, ty = -200;
+    document.addEventListener('mousemove', function (e) { tx = e.clientX; ty = e.clientY; });
+    (function loop() {
+      mx += (tx - mx) * 0.08;
+      my += (ty - my) * 0.08;
+      glow.style.setProperty('--mx', Math.round(mx) + 'px');
+      glow.style.setProperty('--my', Math.round(my) + 'px');
+      requestAnimationFrame(loop);
+    })();
+  }
   </script>
 </body>
 </html>
